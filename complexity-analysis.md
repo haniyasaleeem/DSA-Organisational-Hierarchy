@@ -8,12 +8,19 @@ Each tree node stores:
 
 - Department name
 - Number of children
-- Pointers to child nodes
+- Array of pointers to child nodes
 
-If the tree contains `n` departments, creating all nodes and connecting them takes:
+If the tree contains `n` departments, creating all the nodes requires:
 
 - Time complexity: O(n)
 - Space complexity: O(n)
+
+The `addChild()` function inserts a child directly into the parent's children array. Since the array has a fixed maximum size, adding one child takes O(1) time.
+
+Therefore, for the given implementation:
+
+- Tree construction time complexity: O(n)
+- Tree space complexity: O(n)
 
 ## 2. Level-Order Traversal
 
@@ -32,7 +39,7 @@ Every department is visited once.
 - Time complexity: O(n)
 - Space complexity: O(w)
 
-Here, `w` is the maximum width of the tree. In the worst case, the space complexity is O(n).
+Here, `w` is the maximum width of the tree. In the worst case, the space complexity can be O(n).
 
 ## 3. Tree Height Calculation
 
@@ -52,54 +59,3 @@ The longest path is:
 
 ```text
 CEO → IT → Development → Frontend
-```
-
-## 4. Linear Search
-
-Linear search checks department names one by one.
-
-- Best-case time complexity: O(1)
-- Average-case time complexity: O(n)
-- Worst-case time complexity: O(n)
-- Space complexity: O(1)
-
-Linear search does not require sorted data.
-
-## 5. Binary Search
-
-Binary search works on the sorted department array.
-
-At every step, approximately half of the remaining elements are discarded.
-
-- Best-case time complexity: O(1)
-- Average-case time complexity: O(log n)
-- Worst-case time complexity: O(log n)
-- Space complexity: O(1)
-
-Binary search requires the department names to be sorted.
-
-## 6. Freeing the Tree
-
-The `freeTree()` function releases the memory used by every node.
-
-- Time complexity: O(n)
-- Space complexity: O(h)
-
-## 7. Overall Complexity Table
-
-| Operation | Time Complexity | Space Complexity |
-|---|---:|---:|
-| Create one node | O(1) | O(1) |
-| Construct complete tree | O(n) | O(n) |
-| Add one child | O(1) | O(1) |
-| Level-order traversal | O(n) | O(w) |
-| Calculate tree height | O(n) | O(h) |
-| Linear search | O(n) | O(1) |
-| Binary search | O(log n) | O(1) |
-| Free the tree | O(n) | O(h) |
-
-Where:
-
-- `n` = number of departments
-- `h` = height of the tree
-- `w` = maximum width of the tree
