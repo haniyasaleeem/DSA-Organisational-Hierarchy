@@ -1,7 +1,7 @@
 Organisational hierarchy constructed successfully.
 
 Level-order traversal:
-CEO HR Finance IT Development Testing Frontend Backend
+CEO HR Finance IT Development Testing Frontend Backend 
 
 Tree height: 4 levels
 Tree height in edges: 3
@@ -12,13 +12,13 @@ Searching for: CEO
 Linear Search: CEO found at position 2
 Linear Search comparisons: 2
 Binary Search: CEO found at position 2
-Binary Search comparisons: 3
+Binary Search comparisons: 2
 
 Searching for: Frontend
 Linear Search: Frontend found at position 5
 Linear Search comparisons: 5
 Binary Search: Frontend found at position 5
-Binary Search comparisons: 2
+Binary Search comparisons: 3
 
 Searching for: Testing
 Linear Search: Testing found at position 8
