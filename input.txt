@@ -1,0 +1,27 @@
+Organisational hierarchy:
+
+CEO
+├── HR
+├── Finance
+└── IT
+    ├── Development
+    │   ├── Frontend
+    │   └── Backend
+    └── Testing
+
+Department names used for searching:
+
+Backend
+CEO
+Development
+Finance
+Frontend
+HR
+IT
+Testing
+
+Search targets:
+
+CEO
+Frontend
+Testing
