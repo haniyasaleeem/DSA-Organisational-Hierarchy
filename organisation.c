@@ -12,6 +12,7 @@ typedef struct Node {
     struct Node *children[MAX_CHILDREN];
 } Node;
 
+/* Create a new tree node */
 Node *createNode(const char *name) {
     Node *newNode = (Node *)malloc(sizeof(Node));
 
@@ -30,6 +31,7 @@ Node *createNode(const char *name) {
     return newNode;
 }
 
+/* Add a child to a parent node */
 void addChild(Node *parent, Node *child) {
     if (parent->childCount < MAX_CHILDREN) {
         parent->children[parent->childCount] = child;
@@ -37,10 +39,15 @@ void addChild(Node *parent, Node *child) {
     }
 }
 
+/* Level-order traversal using a queue */
 void levelOrderTraversal(Node *root) {
     Node *queue[MAX_DEPARTMENTS];
+
     int front = 0;
     int rear = 0;
+
+    if (root == NULL)
+        return;
 
     queue[rear++] = root;
 
@@ -59,6 +66,7 @@ void levelOrderTraversal(Node *root) {
     printf("\n");
 }
 
+/* Calculate tree height in levels */
 int calculateHeight(Node *root) {
     if (root == NULL) {
         return 0;
@@ -77,9 +85,11 @@ int calculateHeight(Node *root) {
     return maximumHeight + 1;
 }
 
+/* Linear Search */
 void linearSearch(char departments[][NAME_LENGTH],
                   int count,
                   const char *target) {
+
     int comparisons = 0;
     int found = -1;
 
@@ -102,16 +112,20 @@ void linearSearch(char departments[][NAME_LENGTH],
     printf("Linear Search comparisons: %d\n", comparisons);
 }
 
+/* Binary Search */
 void binarySearch(char departments[][NAME_LENGTH],
                   int count,
                   const char *target) {
+
     int low = 0;
     int high = count - 1;
     int comparisons = 0;
     int found = -1;
 
     while (low <= high) {
+
         int middle = (low + high) / 2;
+
         comparisons++;
 
         int result = strcmp(departments[middle], target);
@@ -136,6 +150,7 @@ void binarySearch(char departments[][NAME_LENGTH],
     printf("Binary Search comparisons: %d\n", comparisons);
 }
 
+/* Free memory allocated for the tree */
 void freeTree(Node *root) {
     if (root == NULL) {
         return;
@@ -149,6 +164,8 @@ void freeTree(Node *root) {
 }
 
 int main() {
+
+    /* Create nodes */
     Node *CEO = createNode("CEO");
     Node *HR = createNode("HR");
     Node *Finance = createNode("Finance");
@@ -158,6 +175,7 @@ int main() {
     Node *Frontend = createNode("Frontend");
     Node *Backend = createNode("Backend");
 
+    /* Construct organisational hierarchy */
     addChild(CEO, HR);
     addChild(CEO, Finance);
     addChild(CEO, IT);
@@ -170,11 +188,16 @@ int main() {
 
     printf("Organisational hierarchy constructed successfully.\n");
 
+    /* Display hierarchy */
     levelOrderTraversal(CEO);
 
-    printf("\nTree height: %d levels\n", calculateHeight(CEO));
-    printf("Tree height in edges: %d\n", calculateHeight(CEO) - 1);
+    /* Display tree height */
+    int height = calculateHeight(CEO);
 
+    printf("\nTree height: %d levels\n", height);
+    printf("Tree height in edges: %d\n", height - 1);
+
+    /* Sorted department array */
     char departments[MAX_DEPARTMENTS][NAME_LENGTH] = {
         "Backend",
         "CEO",
@@ -188,6 +211,7 @@ int main() {
 
     int departmentCount = 8;
 
+    /* Search targets */
     char searches[3][NAME_LENGTH] = {
         "CEO",
         "Frontend",
@@ -197,12 +221,19 @@ int main() {
     printf("\nDepartment searches:\n");
 
     for (int i = 0; i < 3; i++) {
+
         printf("\nSearching for: %s\n", searches[i]);
 
-        linearSearch(departments, departmentCount, searches[i]);
-        binarySearch(departments, departmentCount, searches[i]);
+        linearSearch(departments,
+                     departmentCount,
+                     searches[i]);
+
+        binarySearch(departments,
+                     departmentCount,
+                     searches[i]);
     }
 
+    /* Free allocated memory */
     freeTree(CEO);
 
     return 0;
